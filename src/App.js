@@ -1,11 +1,8 @@
-import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import "./App.css";
 
 function App() {
-  const [Name, setName] = useState("");
-  const [NameHasError, setNameHasError] = useState(false);
-
+                     
   const {
     register,
     handleSubmit,
@@ -13,9 +10,8 @@ function App() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
-    console.log(errors);
-    let result = await fetch("http://10.60.63.89:3000/login/api", {
+    
+    let result = await fetch("http://10.60.63.89:3000/addUser", {
       method: "POST",
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" },
@@ -59,7 +55,7 @@ function App() {
                     name="name"
                     className="form-control"
                     placeholder="Apellido Paterno"
-                    {...register("Apellido Paterno", {
+                    {...register("FatherLastName", {
                       required: true,
                       maxLength: 20,
                     })}
@@ -72,7 +68,7 @@ function App() {
                     name="name"
                     className="form-control"
                     placeholder="Apellido Materno"
-                    {...register("Apellido Materno")}
+                    {...register("MotherLastName")}
                   />
                 </div>
               </div>
@@ -99,7 +95,7 @@ function App() {
                   name="name"
                   className="form-control"
                   placeholder="Contraseña"
-                  {...register("Contraseña")}
+                  {...register("pass")}
                 />
               </div>
               <div className="form-group mb-3">
@@ -109,7 +105,7 @@ function App() {
                   name="name"
                   className="form-control"
                   placeholder="Verificar Contraseña"
-                  {...register("Verificar Contraseña")}
+                  {...register("passVerify")}
                 />
               </div>
               <button type="submit" className="btn btn-primary">
